@@ -1,0 +1,326 @@
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  transition: all 0.3s ease;
+
+  &.collapsed {
+    .sidebar-header .logo-text,
+    .section-title,
+    .item-title,
+    .item-badge,
+    .quick-actions,
+    .sidebar-footer {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .menu-item:hover .tooltip {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 24px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: #c8102e;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px#c8102e;
+
+      ion-icon {
+        font-size: 24px;
+        color: white;
+      }
+    }
+
+    .logo-text {
+      transition: all 0.3s ease;
+
+      h3 {
+        margin: 0;
+        font-size: 18px;
+        font-weight: 700;
+        color: #c8102e;
+        line-height: 1.2;
+      }
+
+      p {
+        margin: 0;
+        font-size: 12px;
+        color: #718096;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+/* Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+  overflow-y: auto;
+
+  .nav-section {
+    margin-bottom: 32px;
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #c8102e;
+      margin: 0 20px 16px;
+      transition: all 0.3s ease;
+    }
+  }
+
+  .menu-items {
+    .menu-item {
+      position: relative;
+      margin: 4px 12px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      overflow: hidden;
+
+      &:hover {
+        background: rgba(234, 102, 146, 0.1);
+        transform: translateX(4px);
+
+        .item-icon ion-icon {
+          color: #c8102e;
+          transform: scale(1.1);
+        }
+      }
+
+      &.active {
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.15), rgba(118, 75, 162, 0.15));
+        border-left: 4px solid #c8102e;
+
+        .item-content {
+          .item-icon ion-icon {
+            color: #c8102e;
+          }
+
+          .item-title {
+            color: #c8102e;
+            font-weight: 600;
+          }
+        }
+      }
+
+      .item-content {
+        display: flex;
+        align-items: center;
+        padding: 12px 16px;
+        gap: 12px;
+
+        .item-icon {
+          width: 24px;
+          height: 24px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          ion-icon {
+            font-size: 20px;
+            color: #4a5568;
+            transition: all 0.3s ease;
+          }
+        }
+
+        .item-title {
+          flex: 1;
+          font-size: 14px;
+          font-weight: 500;
+          color: #4a5568;
+          transition: all 0.3s ease;
+        }
+      }
+
+      .tooltip {
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #c8102e;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 1000;
+        margin-left: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+        &::before {
+          content: '';
+          position: absolute;
+          left: -4px;
+          top: 50%;
+          transform: translateY(-50%);
+          border: 4px solid transparent;
+          border-right-color: #c8102e;
+        }
+
+        .tooltip-badge {
+          background: #667eea;
+          color: white;
+          font-size: 10px;
+          padding: 2px 6px;
+          border-radius: 8px;
+          margin-left: 8px;
+        }
+      }
+    }
+  }
+
+  /* Quick Actions */
+  .quick-actions {
+    padding: 0 20px;
+
+    .action-btn {
+      width: 100%;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 8px;
+
+      ion-icon {
+        font-size: 16px;
+      }
+
+      &.primary {
+        background: #c8102e;
+        color: white;
+        box-shadow: 0 4px 12px#c8102e;
+
+        &:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+      }
+
+      &.secondary {
+        background: #c8102e;
+        color: white;
+        border: 1px solid rgba(102, 126, 234, 0.2);
+
+        &:hover {
+          background: #c8102e;
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+  .footer-content {
+    .stats-summary {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 12px;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .stat-number {
+          font-size: 20px;
+          font-weight: 700;
+          color: #c8102e;
+          line-height: 1;
+        }
+
+        .stat-label {
+          font-size: 11px;
+          color: #718096;
+          font-weight: 500;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+/* Scrollbar Styling */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background:#c8102e;
+  border-radius: 2px;
+
+  &:hover {
+    background: rgba(102, 126, 234, 0.5);
+  }
+}
+
+/* Animation Classes */
+.menu-item {
+  animation: slideInFromLeft 0.3s ease forwards;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar-container {
+    &.collapsed {
+      width: 100%;
+    }
+  }
+}

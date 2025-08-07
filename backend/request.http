@@ -1,0 +1,191 @@
+### ✅ Ajouter un nouveau client (inscription publique)
+POST http://localhost:8080/api/v1/clients
+Content-Type: application/json
+
+{
+  "nom": "Med Ali",
+  "prenom": "Maali",
+  "email": "medali@example.com",
+  "motDePasse": "azerty",
+  "role": "client",
+  "telephone": 12345678,
+  "cin": 12345678
+}
+
+###
+
+### ✅ Récupérer un client par ID (ex: client ID 2)
+GET http://localhost:8080/api/v1/clients/2
+Accept: application/json
+
+###
+
+### ✅ Recherche de trajets disponibles (départ, arrivée, date)
+GET http://localhost:8080/api/v1/trajets/search?depart=1&arrivee=2&date=2025-07-10
+
+###
+
+### ✅ Ajouter un trajet (par un chauffeur connecté - ID 9)
+POST http://localhost:8080/api/v1/trajets/9
+Content-Type: application/json
+
+{
+  "stationDepart": { "id": 2 },
+  "stationArrivee": { "id": 1 },
+  "dateDepart": "2025-07-10T08:30:00",
+  "prix": 20.0
+}
+
+###
+
+### ✅ Ajouter un chauffeur (réservé à l’admin)
+POST http://localhost:8080/api/v1/chauffeurs
+Content-Type: application/json
+
+{
+  "nom": "mkki",
+  "prenom": "Mrabet",
+  "email": "monki@louage.tn",
+  "motDePasse": "securepass",
+  "telephone": 2222222,
+  "cin": 111111,
+  "permis": "c",
+  "vehicule": { "matricule": "123TU456" }
+}
+
+###
+
+### ✅ Ajouter un véhicule (chauffeur ou admin)
+POST http://localhost:8080/api/v1/vehicules
+Content-Type: application/json
+
+{
+  "matricule": "122TU362",
+  "marque": "Chevrolet",
+  "modele": "Aveo ls",
+  "capacite": 4
+}
+
+###
+
+### ✅ Ajouter une station (par admin uniquement)
+POST http://localhost:8080/api/v1/stations
+Content-Type: application/json
+
+{
+  "nom": "Station Sfax",
+  "ville": "Sfax",
+  "adresse": "Avenue de la revolution, manzel"
+}
+
+###
+
+### ✅ Modifier un trajet existant (trajet ID = 2)
+PUT http://localhost:8080/api/v1/trajets/2
+Content-Type: application/json
+
+{
+  "dateDepart": "2025-07-20T08:00:00",
+  "prix": 18.5,
+  "stationDepart": { "id": 3 },
+  "stationArrivee": { "id": 4 },
+  "chauffeur": { "id": 3 }
+}
+
+###
+
+### ✅ Modifier un chauffeur (ex: ID = 13)
+PUT http://localhost:8080/api/v1/chauffeurs/13
+Content-Type: application/json
+
+{
+  "email": "ali.chauffeur@mail.com",
+  "motDePasse": "azerty222"
+}
+
+###
+
+### ✅ Modifier un client (ex: ID = 11)
+PUT http://localhost:8080/api/v1/clients/11
+Content-Type: application/json
+
+{
+  "email": "yasino123@mail.com",
+  "motDePasse": "azerty222"
+}
+
+###
+
+### ✅ Supprimer un trajet (ID = 4)
+DELETE http://localhost:8080/api/v1/trajets/4
+
+###
+
+### ✅ Supprimer une station (ID = 1)
+DELETE http://localhost:8080/api/v1/stations/1
+
+###
+
+### ✅ Supprimer un véhicule (ID = 3)
+DELETE http://localhost:8080/api/v1/vehicules/3
+
+###
+
+### ✅ Supprimer un chauffeur (ID = 7)
+DELETE http://localhost:8080/api/v1/chauffeurs/7
+
+###
+
+### ✅ Supprimer un client (ID = 10)
+DELETE http://localhost:8080/api/v1/clients/10
+
+###
+
+### ✅ Récupérer tous les clients
+GET http://localhost:8080/api/v1/clients
+Accept: application/json
+
+###
+
+### ✅ Récupérer tous les chauffeurs
+GET http://localhost:8080/api/v1/chauffeurs
+Accept: application/json
+
+###
+
+### ✅ Récupérer toutes les stations
+GET http://localhost:8080/api/v1/stations
+Accept: application/json
+
+###
+
+### ✅ Récupérer tous les véhicules
+GET http://localhost:8080/api/v1/vehicules
+Accept: application/json
+
+###
+
+### ✅ Enregistrement via système d’authentification sécurisé (register avec JWT)
+POST http://localhost:8080/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "nom": "Yassine",
+  "prenom": "Ben Ali",
+  "email": "yassine@mail.com",
+  "motDePasse": "123456",
+  "role": "CLIENT",
+  "telephone": 29887766,
+  "cin": 12345678
+}
+
+###
+
+### ✅ Connexion (login JWT)
+POST http://localhost:8080/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "medali@example.com",
+  "motDePasse": "azerty"
+}

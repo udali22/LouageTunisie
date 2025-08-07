@@ -1,0 +1,165 @@
+<ion-content fullscreen>
+<div class="chauffeurs-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="page-title">Gestion des Chauffeurs</h1>
+        <p class="page-subtitle">Gérez et suivez tous vos chauffeurs</p>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon chauffeurs">
+        <ion-icon name="car-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ totalChauffeurs }}</h3>
+        <p>Total Chauffeurs</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon active">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ activeChauffeurs }}</h3>
+        <p>Chauffeurs Actifs</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon rating">
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ averageRating }}</h3>
+        <p>Note moyenne</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters and Search -->
+  <div class="filters-section">
+    <div class="search-container">
+      <ion-icon name="search-outline"></ion-icon>
+      <input
+        type="text"
+        placeholder="Rechercher par nom, email ou téléphone..."
+        class="search-input"
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+      >
+    </div>
+
+    
+  </div>
+
+  <!-- Chauffeurs Table -->
+  <div class="table-container">
+    <div class="table-header">
+      <h3>Liste des Chauffeurs ({{ filteredChauffeurs.length }})</h3>
+    </div>
+
+    <!-- Table View -->
+    <div class="table-wrapper" *ngIf="viewMode === 'table'">
+  <table class="clients-table">
+    <thead>
+      <tr>
+        <th (click)="sortBy('nom')" class="sortable">
+          Chauffeur
+          <ion-icon name="chevron-up-outline" *ngIf="sortField === 'nom' && sortDirection === 'asc'"></ion-icon>
+          <ion-icon name="chevron-down-outline" *ngIf="sortField === 'nom' && sortDirection === 'desc'"></ion-icon>
+        </th>
+        <th>Contact</th>
+        <th>CIN</th>
+        <th>Permis</th>
+        <th>Licence</th>
+        <th>Véhicule</th>
+        <th>Note</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let chauffeur of paginatedChauffeurs">
+        <!-- Chauffeur -->
+        <td>
+          <div class="chauffeur-info">
+            <div class="chauffeur-details">
+              <h4>{{ chauffeur.prenom }} {{ chauffeur.nom }}</h4>
+            </div>
+          </div>
+        </td>
+
+        <!-- Contact -->
+        <td>
+          <div class="contact-info">
+            <p>{{ chauffeur.email }}</p>
+            <p>{{ chauffeur.telephone }}</p>
+          </div>
+        </td>
+
+        <!-- CIN -->
+        <td>{{ chauffeur.cin }}</td>
+
+        <!-- Permis -->
+        <td>{{ chauffeur.permis }}</td>
+
+        <!-- Licence -->
+        <td>{{chauffeur.numLicence}}</td>
+
+        <!-- Véhicule -->
+        <td>
+          {{ chauffeur.vehiculeMatricule }}
+        </td>
+
+        <!-- Note -->
+        <td>
+          <div class="rating" *ngIf="chauffeur.noteGlobale">
+            <ion-icon name="star" class="star filled"></ion-icon>
+            <span> note</span>
+          </div>
+          <span *ngIf="!chauffeur.noteGlobale" class="no-rating">-</span>
+        </td>
+
+        <!-- Actions -->
+        <td>
+          <div class="action-buttons">
+            <button class="action-btn-small delete" (click)="deleteChauffeur(chauffeur)" title="Supprimer">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button class="page-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+
+      <div class="page-numbers">
+        <button
+          *ngFor="let page of getPageNumbers()"
+          class="page-number"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)"
+        >
+          {{ page }}
+        </button>
+      </div>
+
+      <button class="page-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+</div>
+</ion-content>

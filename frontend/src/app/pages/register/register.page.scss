@@ -1,0 +1,158 @@
+.register-page {
+  --ion-background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+
+  #contenu-back {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: stretch;
+    max-width: 2000px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+
+    .contenu-write {
+      flex: 2;
+      padding: 40px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h1 {
+        color: #c8102e;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1px;
+      }
+
+      .soustitre {
+        color: #444;
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        
+
+        ion-input {
+          --background: #fff;
+          --padding-start: 14px;
+          --border-radius: 8px;
+          
+          color: #000;
+          font-size: 14px;
+          margin-bottom: 10px !important; // Correction : on retire le margin individuel
+
+          ::placeholder {
+            color: #888;
+          }
+        }
+
+        .role-checkbox-group {
+          display: flex;
+          align-items: center;
+          font-size: 14px;
+          color: #000;
+          margin-top: 10px;
+
+          input[type="checkbox"] {
+            margin-right: 10px;
+            accent-color: #c8102e;
+          }
+        }
+
+        ion-button {
+          --background: #c8102e;
+          --color: #fff;
+          --border-radius: 6px;
+          font-weight: bold;
+          font-size: 16px;
+        }
+      }
+
+      .goregister {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 14px;
+        color: #444;
+
+        a {
+          color: #c8102e;
+          font-weight: 600;
+          margin-left: 4px;
+          cursor:pointer;
+        }
+      }
+    }
+
+    .contenu-logo {
+      flex: 1;
+      order: 2;
+      background-color: #ffffff;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-left: 1px solid #eee;
+
+      .logo0001 img {
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 1.5rem;
+}
+
+      .title0001 h1 {
+        color: #d50000;
+        font-size: 20px;
+        margin-bottom: 15px;
+      }
+
+      .reseaux {
+        display: flex;
+        gap: 15px;
+
+        img {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+  }
+
+  // 🔁 Responsive : logo au-dessus du formulaire
+  @media (max-width: 768px) {
+    #contenu-back {
+      flex-direction: column-reverse;
+      .contenu-logo {
+        border-right: none;
+        border-bottom: 1px solid #eee;
+      }
+
+      .contenu-write {
+        padding: 25px 20px;
+      }
+    }
+  }
+/* Amélioration de la disposition du logo et des icônes réseaux */
+
+
+.reseaux img {
+    filter: brightness(0) invert(0.2) grayscale(0.2); // Plus noir et clair
+    transition: filter 0.2s;
+}
+.reseaux img:hover {
+    filter: brightness(0) invert(0.5) grayscale(0.1); // Effet au survol
+}
+}

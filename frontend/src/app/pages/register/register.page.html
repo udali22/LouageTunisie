@@ -1,0 +1,55 @@
+<ion-content class="ion-padding register-page">
+  <div id="contenu-back">
+    <!-- Partie Écriture (Formulaire) -->
+    <div class="contenu-write">
+      <div class="write-element">
+        <h1>INSCRIPTION</h1>
+        <p class="soustitre">Créer votre compte personnel</p>
+
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <ion-input formControlName="nom" placeholder="Nom" type="text" fill="outline"></ion-input>
+          <ion-input formControlName="prenom" placeholder="Prénom" type="text" fill="outline"></ion-input>
+          <ion-input formControlName="telephone" placeholder="Téléphone" type="tel" fill="outline"></ion-input>
+          <ion-input formControlName="email" placeholder="Email" type="email" fill="outline"></ion-input>
+          <ion-input formControlName="password" placeholder="Mot de passe" type="password" fill="outline"></ion-input>
+          <ion-input formControlName="cin" placeholder="CIN" type="text" fill="outline"></ion-input>
+
+          <div class="role-checkbox-group">
+            <label>
+              <input type="checkbox" [checked]="isChauffeur" (change)="toggleChauffeur($event)" />
+              Je suis un chauffeur
+            </label>
+          </div>
+
+          <div *ngIf="isChauffeur">
+            <ion-input formControlName="numPermis" placeholder="Numéro de permis" type="text" fill="outline"></ion-input>
+            <ion-input formControlName="plaque" placeholder="Plaque d'immatriculation" type="text" fill="outline"></ion-input>
+            <ion-input formControlName="numLicence" placeholder="Votre Numéro de Licence" type="text" fill="outline"></ion-input>
+          </div>
+
+          <ion-button expand="block" type="submit">S'inscrire</ion-button>
+
+          <p class="goregister">
+            Déjà un compte ?
+            <a (click)="goToLogin()">Connectez-vous</a>
+          </p>
+        </form>
+      </div>
+    </div>
+
+    <!-- Partie Logo -->
+    <div class="contenu-logo">
+      <div class="logo0001">
+        <img src="assets/img/stock-vector-logo-for-transport-company-car-icon-you-can-use-it-for-your-design-and-ideas-659068741.jpg" />
+      </div>
+      <div class="title0001"><h1>Rejoignez-nous !</h1></div>
+      <div class="reseaux">
+        <a href="#"><img src="assets/img/facebook.png" /></a>
+        <a href="#"><img src="assets/img/instagram.png" /></a>
+        <a href="#"><img src="assets/img/e-mail.png" /></a>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+

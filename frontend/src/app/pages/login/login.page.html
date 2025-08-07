@@ -1,0 +1,67 @@
+<ion-content class="ion-padding login-page">
+  <div id="contenu-back">
+    <!-- Partie Écriture (Formulaire) -->
+    <div class="contenu-write">
+      <div class="write-element">
+        <h1>SE CONNECTER</h1>
+        <p class="soustitre">Accédez à Votre Compte </p>
+
+        <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+          <!-- Email / Username -->
+          <ion-input
+            class="email"
+            formControlName="email"
+            placeholder="email"
+            type="email"
+            fill="outline"
+          ></ion-input>
+
+          <!-- Mot de passe -->
+          <ion-input
+            class="motDePasse"
+            formControlName="motDePasse"
+            placeholder="Mot de passe"
+            type="password"
+            fill="outline"
+          ></ion-input>
+
+        <hr/>
+
+          <!-- Message d'erreur -->
+          <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+
+          <!-- Bouton Connexion -->
+          <ion-button expand="block" type="submit">CONNECTER</ion-button>
+
+          <!-- Boutons Google / Facebook -->
+          <ion-button expand="block" fill="clear" color= "black" (click)="loginWithGoogle()">
+            <img src="assets/img/google.png" width="20" style="margin-right: 8px" /> Google
+          </ion-button>
+          <ion-button expand="block" fill="clear" color="black" (click)="loginWithFacebook()">
+            <img src= "assets/img/facebookb.png" width="20" style="margin-right: 8px" /> Facebook
+          </ion-button>
+
+        
+        </form>
+          <p class="goregister" (click)="goToRegister()">
+            Vous n'avez pas de compte ?
+            <a routerLink="/register">Inscrivez-vous !</a>
+          </p>
+      </div>
+    </div>
+    
+
+    <!-- Partie Logo -->
+    <div class="contenu-logo">
+      <div class="logo0001">
+        <img src="assets/img/stock-vector-logo-for-transport-company-car-icon-you-can-use-it-for-your-design-and-ideas-659068741.jpg" />
+      </div>
+      <div class="title0001"><h1>Rejoignez-nous !</h1></div>
+      <div class="reseaux">
+        <a href="#"><img src="assets/img/facebook.png" /></a>
+        <a href="#"><img src="assets/img/instagram.png" /></a>
+        <a href="#"><img src="assets/img/e-mail.png" /></a>
+      </div>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,78 @@
+<div class="sidebar-container" [class.collapsed]="collapsed">
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <div class="logo-container">
+      <div class="logo-icon">
+        <ion-icon name="car-sport-outline"></ion-icon>
+      </div>
+      <div class="logo-text" *ngIf="!collapsed">
+        <h3>Louage Admin</h3>
+        <p>Tableau de bord</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav class="sidebar-nav">
+    <div class="nav-section">
+      <h4 class="section-title" *ngIf="!collapsed">Navigation</h4>
+
+      <div class="menu-items">
+        <div
+          *ngFor="let item of menuItems"
+          class="menu-item"
+          [class.active]="item.active"
+          (click)="navigateTo(item.route)"
+        >
+          <div class="item-content">
+            <div class="item-icon">
+              <ion-icon [name]="item.icon"></ion-icon>
+            </div>
+            <span class="item-title" *ngIf="!collapsed">{{ item.title }}</span>
+          </div>
+
+          <!-- Tooltip for collapsed state -->
+          <div class="tooltip" *ngIf="collapsed"> 
+            {{ item.title }}
+           
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="nav-section" *ngIf="!collapsed">
+      <h4 class="section-title">Actions rapides</h4>
+      <div class="quick-actions">
+        <button class="action-btn primary">
+          <ion-icon name="people-outline"></ion-icon>
+          Nouveau client
+        </button>
+        <button class="action-btn secondary">
+          <ion-icon name="people-outline"></ion-icon>
+          Nouveau chauffeur
+        </button>
+        <button class="action-btn secondary">
+          <ion-icon name="map-outline"></ion-icon>
+          Nouvelle station
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Sidebar Footer -->
+  <div class="sidebar-footer" *ngIf="!collapsed">
+    <div class="footer-content">
+      <div class="stats-summary">
+        <div class="stat-item">
+          <span class="stat-number">{{ activeClientsCount}}</span>
+          <span class="stat-label">Clients actifs</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ activeChauffeursCount }}</span>
+          <span class="stat-label">Chauffeurs actifs</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

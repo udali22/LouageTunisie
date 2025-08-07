@@ -1,0 +1,75 @@
+<ion-content fullscreen>
+<div class="dashboard-container">
+  <!-- Dashboard Header -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <div class="welcome-section">
+        <h1 class="dashboard-title">Tableau de bord</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-grid">
+    <div class="stat-card" *ngFor="let stat of statistics">
+      <div class="stat-content">
+        <div class="stat-icon" [style.background]="stat.gradient">
+          <ion-icon [name]="stat.icon"></ion-icon>
+        </div>
+        <div class="stat-info">
+          <h3 class="stat-value">{{ stat.value }}</h3>
+          <p class="stat-label">{{ stat.label }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- Recent Activities and Quick Stats -->
+  <div class="bottom-section">
+    <div class="bottom-grid">
+      <!-- Recent Activities -->
+      <div class="activity-card">
+        <div class="card-header">
+          <h3>Activités récentes</h3>
+          <a href="#" class="view-all">Voir tout</a>
+        </div>
+        <div class="activity-list">
+          <div class="activity-item" *ngFor="let activity of recentActivities">
+            <div class="activity-icon" [style.background]="activity.color">
+              <ion-icon [name]="activity.icon"></ion-icon>
+            </div>
+            <div class="activity-content">
+              <p class="activity-text">{{ activity.text }}</p>
+              <span class="activity-time">{{ activity.time }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top Performers -->
+      <div class="performers-card">
+        <div class="card-header">
+          <h3>Meilleurs chauffeurs</h3>
+          <a href="#" class="view-all">Voir tout</a>
+        </div>
+        <div class="performers-list">
+          <div class="performer-item" *ngFor="let performer of topPerformers">
+            <div class="performer-info">
+              <div class="performer-details">
+                <h4>{{ performer.name }}</h4>
+                <p>{{ performer.trips }} trajets</p>
+              </div>
+            </div>
+            <div class="performer-rating">
+              <div class="rating-stars">
+                <ion-icon name="star" *ngFor="let star of [1,2,3,4,5]"
+                         [class.filled]="star <= performer.rating"></ion-icon>
+              </div>
+              <span class="rating-value">{{ performer.rating }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</ion-content>

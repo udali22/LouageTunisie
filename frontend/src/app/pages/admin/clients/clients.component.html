@@ -1,0 +1,144 @@
+<ion-content fullscreen>
+<div class="clients-container">
+  <!-- Page Header -->
+  <div class="page-header">
+    <div class="header-content">
+      <div class="title-section">
+        <h1 class="page-title">Gestion des Clients</h1>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statistics Cards -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="stat-icon clients">
+        <ion-icon name="people-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ totalClients }}</h3>
+        <p>Total Clients</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon active">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ activeClients }}</h3>
+        <p>Clients Actifs</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon new">
+        <ion-icon name="person-add-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ newClientsThisMonth }}</h3>
+        <p>Nouveaux ce mois</p>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon rating">
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <div class="stat-info">
+        <h3>{{ averageRating }}</h3>
+        <p>Note moyenne</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filters and Search -->
+  <div class="filters-section">
+    <div class="search-container">
+      <ion-icon name="search-outline"></ion-icon>
+      <input
+        type="text"
+        placeholder="Rechercher par nom, email ou téléphone..."
+        class="search-input"
+        [(ngModel)]="searchQuery"
+        (input)="onSearch()"
+      >
+    </div>
+  </div>
+
+    
+
+
+  <!-- Clients Table -->
+  <div class="table-container">
+    <div class="table-header">
+      <h3>Liste des Clients ({{ filteredClients.length }})</h3>
+    </div>
+
+    <!-- Table View -->
+    <div class="table-wrapper">
+      <table class="clients-table">
+        <thead>
+          <tr>
+           
+            <th (click)="sortBy('nom')" class="sortable">
+              Nom
+              <ion-icon name="chevron-up-outline" *ngIf="sortField === 'nom' && sortDirection === 'asc'"></ion-icon>
+              <ion-icon name="chevron-down-outline" *ngIf="sortField === 'nom' && sortDirection === 'desc'"></ion-icon>
+            </th>
+            <th>Contact</th>
+            <th>CIN</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let client of paginatedClients">
+            
+            <td>
+              <div class="client-info">
+                <div class="client-details">
+                  <h4>{{ client.prenom }} {{ client.nom }}</h4>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="contact-info">
+                <p>{{ client.email }}</p>
+                <p>{{ client.telephone }}</p>
+              </div>
+            </td>
+            <td>{{ client.cin }}</td>
+            <td>
+              <div class="action-buttons">
+                <button class="action-btn-small delete" (click)="deleteClient(client)" title="Supprimer">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    
+    <!-- Pagination -->
+    <div class="pagination" *ngIf="totalPages > 1">
+      <button class="page-btn" [disabled]="currentPage === 1" (click)="goToPage(currentPage - 1)">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </button>
+ 
+      <div class="page-numbers">
+        <button
+          *ngFor="let page of getPageNumbers()"
+          class="page-number"
+          [class.active]="page === currentPage"
+          (click)="goToPage(page)"
+        >
+          {{ page }}
+        </button>
+      </div>
+
+      <button class="page-btn" [disabled]="currentPage === totalPages" (click)="goToPage(currentPage + 1)">
+        <ion-icon name="chevron-forward-outline"></ion-icon>
+      </button>
+    </div>
+  </div>
+</div>
+</ion-content>

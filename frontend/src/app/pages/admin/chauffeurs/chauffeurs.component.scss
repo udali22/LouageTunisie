@@ -1,0 +1,278 @@
+// Import the clients styles as base and extend for chauffeurs
+@import '../clients/clients.component.scss';
+
+.chauffeurs-container {
+  @extend .clients-container;
+}
+
+/* Chauffeur-specific styling overrides */
+.stats-row {
+  .stat-card {
+    .stat-icon {
+      &.chauffeurs {
+        background: linear-gradient(135deg, #667eea, #764ba2);
+      }
+
+      &.pending {
+        background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      }
+    }
+  }
+}
+
+/* Vehicle Info Styling */
+.vehicle-info {
+  h5 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2d3748;
+    margin: 0 0 4px 0;
+  }
+
+  p {
+    font-size: 12px;
+    color: #718096;
+    margin: 0 0 2px 0;
+
+    &:last-of-type {
+      margin-bottom: 8px;
+    }
+  }
+
+  .capacity-info {
+    font-size: 11px;
+    color: var(--ion-color-primary);
+    background: var(--ion-color-primary-tint);
+    padding: 2px 6px;
+    border-radius: 8px;
+    font-weight: 500;
+    display: inline-block;
+  }
+
+  .no-vehicle {
+    font-size: 11px;
+    color: var(--ion-color-warning);
+    font-style: italic;
+    display: block;
+    margin-top: 4px;
+  }
+
+  .places-badge {
+    background: rgba(102, 126, 234, 0.1);
+    color: #667eea;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+}
+
+/* Document Badge */
+.document-badge {
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+
+  &.verified {
+    background: rgba(56, 178, 172, 0.1);
+    color: #38b2ac;
+  }
+
+  &.pending {
+    background: rgba(245, 101, 101, 0.1);
+    color: #f56565;
+  }
+}
+
+/* Chauffeur Info Styling */
+.chauffeur-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .chauffeur-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #667eea;
+  }
+
+  .chauffeur-details {
+    h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #2d3748;
+      margin: 0 0 2px 0;
+    }
+
+    p {
+      font-size: 11px;
+      color: #718096;
+      margin: 0 0 1px 0;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+  }
+}
+
+/* Action Button for Validation */
+.action-btn-small.validate {
+  background: rgba(56, 178, 172, 0.1);
+  color: #38b2ac;
+
+  &:hover {
+    background: rgba(56, 178, 172, 0.2);
+    transform: translateY(-1px);
+  }
+}
+
+.card-btn.validate {
+  background: rgba(56, 178, 172, 0.1);
+  color: #38b2ac;
+
+  &:hover {
+    background: rgba(56, 178, 172, 0.2);
+    transform: translateY(-2px);
+  }
+}
+
+/* Grid View Chauffeur Card Specific */
+.chauffeur-card {
+  .card-header {
+    .chauffeur-photo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid white;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .chauffeur-status {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      .status-badge,
+      .document-badge {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: capitalize;
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+        backdrop-filter: blur(10px);
+        text-align: center;
+      }
+    }
+  }
+
+  .card-content {
+    .vehicle-summary {
+      background: rgba(102, 126, 234, 0.05);
+      border-radius: 8px;
+      padding: 12px;
+      margin: 16px 0;
+
+      h4 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #667eea;
+        margin: 0 0 4px 0;
+      }
+
+      p {
+        font-size: 12px;
+        color: #718096;
+        margin: 0 0 8px 0;
+      }
+
+      .places-info {
+        background: rgba(102, 126, 234, 0.1);
+        color: #667eea;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+    }
+
+    .chauffeur-email,
+    .chauffeur-phone,
+    .chauffeur-city {
+      font-size: 14px;
+      color: #718096;
+      margin: 0 0 8px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+
+      &:before {
+        content: '';
+        width: 4px;
+        height: 4px;
+        background: #cbd5e0;
+        border-radius: 50%;
+      }
+    }
+
+    .chauffeur-stats {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+
+      .stat {
+        text-align: center;
+
+        .stat-value {
+          display: block;
+          font-size: 20px;
+          font-weight: 700;
+          color: #667eea;
+          margin-bottom: 4px;
+        }
+
+        .stat-label {
+          font-size: 12px;
+          color: #a0aec0;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+/* Status Badge Variations for Chauffeurs */
+.status-badge {
+  &.en_attente_validation {
+    background: rgba(251, 191, 36, 0.1);
+    color: #f59e0b;
+  }
+}
+
+/* Table specific adjustments for chauffeurs */
+.chauffeurs-table {
+  th:nth-child(4) {
+    min-width: 180px; // Vehicle column needs more space
+  }
+
+  th:nth-child(9) {
+    min-width: 120px; // Documents column
+  }
+
+  th:nth-child(11) {
+    min-width: 140px; // Actions column (has validate button)
+  }
+}
